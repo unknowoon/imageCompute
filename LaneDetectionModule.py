@@ -63,8 +63,8 @@ def getLaneCurve(img, display=2):
     if curve < -1: curve == -1
     return curve
 
-if __name__ == '__main__':
-    cap = cv2.VideoCapture('vid1.mp4')
+def line_trace(cap):
+    #cap = cv2.VideoCapture('vid1.mp4')
     #!!! 값 적용을 위해 변경할 것!!!
     intialTrackBarVals = [102, 80, 20, 214]
     utils.initializeTrackbars(intialTrackBarVals)
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
         success, img = cap.read()
         img = cv2.resize(img, (480, 240))
-        # 이걸로 라인 값 튜닝 0, 안뜸, 1, 하나 2 여러개 
+        # 이걸로 라인 값 튜닝 0, 안뜸, 1, 하나 2 여러개
         curve = getLaneCurve(img, display=2)
         print(curve)
         #cv2.imshow('Video', img)
