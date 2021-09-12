@@ -1,0 +1,15 @@
+setting
+
+PC (server)
+
+ImageClassificater.py
+LaneDetectionModule.py
+colorPicker.py
+server_sum.py
+utils.py
+학습할 이미지
+
+PI (client)
+
+client_cam.py
+MotorModule.py
