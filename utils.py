@@ -3,8 +3,8 @@ import numpy as np
 
 def thresholding(img):
     imgHsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    lowerWhite = np.array([80,0,0])
-    upperWhite = np.array([255,160,255])
+    lowerWhite = np.array([0,0,205])
+    upperWhite = np.array([179,29,255])
     maskWhite = cv2.inRange(imgHsv, lowerWhite, upperWhite)
     return maskWhite
 
@@ -43,7 +43,7 @@ def drawPoints(img,points):
     for x in range(4):
         cv2.circle(img,(int(points[x][0]),int(points[x][1])),15,(0,0,255),cv2.FILLED)
     return img
-
+# 트루 0.9 1
 def getHistogram(img, display=False, minPer=0.1, region=4):
     if region == 1:
         histValues = np.sum(img, axis=0)
@@ -63,8 +63,9 @@ def getHistogram(img, display=False, minPer=0.1, region=4):
         for x, intensity in enumerate(histValues):
             if intensity > minValue:color=(255,0,255)
             else: color=(0,0,255)
+            pt2Y = img.shape[0]-int(intensity//255//region)
             #pt2 파라미터 자리에 이미지 쉐잎에서 뺄 부분을 인티저화 해주지 않으면 오류생김
-            cv2.line(imgHist, (x, img.shape[0]), (x, img.shape[0]-int(intensity//255//region)), color, 1)
+            cv2.line(imgHist, (x, img.shape[0]), (x, pt2Y), color, 1)
             cv2.circle(imgHist, (basePoint, img.shape[0]), 20, color, cv2.FILLED)
         return basePoint, imgHist
     return basePoint

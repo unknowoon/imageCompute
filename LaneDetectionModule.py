@@ -3,6 +3,7 @@ import numpy as np
 from numpy.lib.function_base import disp
 import utils
 
+
 curveList = []
 avgVal=10
 
@@ -66,20 +67,16 @@ def getLaneCurve(img, display=2):
 def line_trace(cap):
     #cap = cv2.VideoCapture('vid1.mp4')
     #!!! 값 적용을 위해 변경할 것!!!
-    intialTrackBarVals = [102, 80, 20, 214]
+    #widthTop, HeightTop, WidthBottom, HeightBottom
+    intialTrackBarVals = [79, 144, 58, 240]
     utils.initializeTrackbars(intialTrackBarVals)
-    frameCounter = 0
-    while True:
-        #loop
-        frameCounter +=1
-        if cap.get(cv2.CAP_PROP_FRAME_COUNT) ==frameCounter:
-            cap.set(cv2.CAP_PROP_POS_FRAMES,0)
-            frameCounter=0
 
-        success, img = cap.read()
-        img = cv2.resize(img, (480, 240))
+    while True:
+        #success, img = cap.read()
+        img = cv2.resize(cap, (480, 240))
         # 이걸로 라인 값 튜닝 0, 안뜸, 1, 하나 2 여러개
         curve = getLaneCurve(img, display=2)
         print(curve)
+        return curve
         #cv2.imshow('Video', img)
         cv2.waitKey(1)

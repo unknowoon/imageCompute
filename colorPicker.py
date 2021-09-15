@@ -10,7 +10,7 @@ def empty(a):
 frameWidth = 640
 frameHeight = 480
 # 0은 내장 웹캠
-cap = cv2.VideoCapture('rev1.mp4')
+cap = cv2.VideoCapture('http://192.168.137.153:8090/?action=stream')
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 
@@ -51,7 +51,7 @@ while True:
     cv2.imshow('Horizontal Stacking', hStack)
 
     # 프레임 수정 하면 속도 빠르게 if put 1 in pharam is playing faster
-    if cv2.waitKey(2) == 27:
+    if cv2.waitKey(1) == 27:
         print(lower)
         print(upper)
         break
