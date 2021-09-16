@@ -1,5 +1,7 @@
+  
 import RPi.GPIO as GPIO
 from time import sleep
+from gpiozreo import Motor
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
  
@@ -65,3 +67,15 @@ def main():
 if __name__ == '__main__':
     motor= Motor(2,3,4,17,22,27)
     main()
+
+class FarkLift():
+    def __init__(self,In1A,In2A):
+        self.In1A = In1A
+        self.In2A = In2A
+        motor = Motor(forward = In1A ,backward = In2A )
+
+    def Up(self,speed=0.5,turn=0):
+        Motor.forward(speed=self.speed)
+
+    def Down(self,speed=0.5,turn=0):
+        Motor.backward(speed=self.speed)
